@@ -25,7 +25,7 @@ a{color:inherit}
 .skip-link{position:absolute;left:-9999px}
 .skip-link:focus{left:12px;top:12px;background:var(--accent);color:#fff;padding:8px 10px;border-radius:8px;z-index:9999}
 
-/* ---------- Navbar ---------- */
+/* ---------- The Navbar ---------- */
 .navbar{position:sticky;top:0;background:var(--panel);box-shadow:var(--soft-shadow);z-index:120}
 .nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 18px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;cursor:pointer}
@@ -39,7 +39,7 @@ a{color:inherit}
 #theme-toggle:checked ~ * .theme-toggle .sun{opacity:0}
 #theme-toggle:checked ~ * .theme-toggle .moon{opacity:1;transform:none}
 
-/* ---------- Panels (tabs) ---------- */
+/* ---------- The Panels (tabs) ---------- */
 .panel{display:none;opacity:0;transform:translateY(8px);transition:all 420ms ease;max-width:var(--maxw);margin:22px auto;padding:18px}
 #tab-home:checked ~ * .panel-home,
 #tab-menu:checked ~ * .panel-menu,
@@ -52,7 +52,7 @@ a{color:inherit}
   display:block;opacity:1;transform:none;
 }
 
-/* ---------- Hero / Home ---------- */
+/* ---------- The Hero / Home ---------- */
 .hero{display:flex;gap:24px;align-items:stretch;background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 28%, #fff), transparent);padding:28px;border-radius:16px;box-shadow:var(--soft-shadow)}
 .hero-left{flex:1;min-width:260px}
 .hero-right{width:360px}

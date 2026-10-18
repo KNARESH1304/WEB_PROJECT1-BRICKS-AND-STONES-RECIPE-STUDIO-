@@ -1,4 +1,4 @@
-GitHub repository: [add link]
+GitHub repository: https://github.com/KNARESH1304/WEB_PROJECT1-BRICKS-AND-STONES-RECIPE-STUDIO-
 Live site (designated server): [add link]
-Kanban board (GitHub Projects): [add link]
+Kanban board (GitHub Projects): Created and added it into files
 Screenshots / demo GIF: [add link]

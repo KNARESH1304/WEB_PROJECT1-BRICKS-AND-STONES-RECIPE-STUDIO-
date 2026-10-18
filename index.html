@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bricks and Stones Recipe Studio</title>
+  <meta name="description" content="Bricks and Stones Recipe Studio — an interactive, CSS-only pizza recipe website.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form id="appnav" aria-hidden="true"></form>
+
+  <!-- Tabs -->
+  <input type="radio" name="tab" id="tab-home" checked form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-menu" form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-recipes" form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-favorites" form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-order" form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-gallery" form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-shopping" form="appnav" class="visually-hidden">
+  <input type="radio" name="tab" form="appnav" id="tab-cart" class="visually-hidden">
+  <input type="radio" name="tab" id="tab-about" form="appnav" class="visually-hidden">
+
+  <!-- Theme -->
+  <input type="checkbox" id="theme-toggle" class="visually-hidden">
+
+  <!-- Menu filters (hidden radios used to filter) -->
+  <input type="radio" name="menu-filter" id="filter-all" value="all" checked class="visually-hidden">
+  <input type="radio" name="menu-filter" id="filter-pizzas" value="pizzas" class="visually-hidden">
+  <input type="radio" name="menu-filter" id="filter-sides" value="sides" class="visually-hidden">
+  <input type="radio" name="menu-filter" id="filter-desserts" value="desserts" class="visually-hidden">
+  <input type="radio" name="menu-filter" id="filter-drinks" value="drinks" class="visually-hidden">
+  
+  <!-- Recipe Detail Views -->
+  <input type="radio" name="recipe-view" id="recipe-none" checked form="appnav" class="visually-hidden">
+  <input type="radio" name="recipe-view" id="recipe-margherita" form="appnav" class="visually-hidden">
+  <input type="radio" name="recipe-view" id="recipe-pepperoni" form="appnav" class="visually-hidden">
+
+  <!-- Serving Size Controls -->
+  <input type="radio" name="serving-size" id="serving-1" class="visually-hidden">
+  <input type="radio" name="serving-size" id="serving-2" checked class="visually-hidden">
+  <input type="radio" name="serving-size" id="serving-4" class="visually-hidden">
+  <input type="radio" name="serving-size" id="serving-6" class="visually-hidden">
+
+  <!-- Favorites System -->
+  <input type="checkbox" id="fav-margherita" class="fav-checkbox visually-hidden">
+  <input type="checkbox" id="fav-pepperoni" class="fav-checkbox visually-hidden">
+
+  <!-- Cook-along Mode -->
+  <input type="checkbox" id="cook-along-mode" form="appnav" class="visually-hidden">
+  <input type="radio" name="cook-step" id="cook-step-0" checked form="appnav" class="visually-hidden">
+  <input type="radio" name="cook-step" id="cook-step-1" form="appnav" class="visually-hidden">
+  <input type="radio" name="cook-step" id="cook-step-2" form="appnav" class="visually-hidden">
+  <input type="radio" name="cook-step" id="cook-step-3" form="appnav" class="visually-hidden">
+  <input type="radio" name="cook-step" id="cook-step-4" form="appnav" class="visually-hidden">
+
+  <!-- Shopping list inputs -->
+  <input type="checkbox" id="shopping-order-confirm" class="visually-hidden">
+  <input type="checkbox" id="shopping-order-reset" class="visually-hidden">
+
+  <!-- Product toggles for cart (one per product) -->
+  <div class="product-toggles">
+    <input type="checkbox" id="p-margherita" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-pepperoni" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-bbq" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-veggie" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-cheeseburst" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-paneer" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-dominator" class="prod-checkbox visually-hidden">
+
+    <input type="checkbox" id="p-garlic" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-stuffed" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-wedges" class="prod-checkbox visually-hidden">
+
+    <input type="checkbox" id="p-lava" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-brownie" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-cheesecake" class="prod-checkbox visually-hidden">
+
+    <input type="checkbox" id="p-coke" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-coffee" class="prod-checkbox visually-hidden">
+    <input type="checkbox" id="p-smoothie" class="prod-checkbox visually-hidden">
+  </div>
+
+  <!-- Order-confirm -->
+  <input type="checkbox" id="order-confirm" class="visually-hidden" aria-hidden="true">
+
+  <header class="navbar" role="banner">
+    <div class="nav-inner">
+      <!-- Brand clickable label -> home tab -->
+      <label for="tab-home" class="brand" title="Bricks and Stones Recipe Studio — Home">
+        <span class="logo" aria-hidden="true">🍕</span>
+        <span class="brand-name">Bricks and Stones</span>
+      </label>
+
+      <nav class="nav-tabs" role="navigation" aria-label="Primary">
+        <label for="tab-home" class="tab-link" tabindex="0">Home</label>
+        <label for="tab-menu" class="tab-link" tabindex="0">Menu</label>
+        <label for="tab-recipes" class="tab-link" tabindex="0">Recipes</label>
+        <label for="tab-favorites" class="tab-link" tabindex="0">Favorites</label>
+        <label for="tab-order" class="tab-link" tabindex="0">Order</label>
+        <label for="tab-cart" class="tab-link" tabindex="0">🛒 Cart &amp; Orders</label>
+        <label for="tab-gallery" class="tab-link" tabindex="0">Gallery</label>
+        <label for="tab-shopping" class="tab-link" tabindex="0">Shopping</label>
+        <label for="tab-about" class="tab-link" tabindex="0">About</label>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="maincontent">
+
+    <!-- HOME PANEL -->
+    <section class="panel panel-home" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 id="home-title">Bricks and Stones Recipe Studio</h1>
+          <p class="lead">Explore, customize, and cook pizza recipes step by step.</p>
+
+          <div class="cta">
+            <label for="tab-menu" class="btn primary">Explore Menu</label>
+            <label for="tab-recipes" class="btn ghost">View Recipes</label>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="feature-card">
+            <div class="imgwrap"><img src="images/margharita.jpg" alt="Featured Margherita"></div>
+            <div class="feature-meta">
+              <h3>Featured: Margherita</h3>
+              <p class="muted">Classic — tomato, mozzarella, basil.</p>
+              <div class="feature-actions">
+                <label for="p-margherita" class="btn small">Add to Cart</label>
+                <label for="recipe-margherita" class="btn small ghost">View Recipe</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending / New / Chef's Picks -->
+      <div class="showcase">
+        <div class="show-column">
+          <h4>Trending Recipes</h4>
+          <ul class="mini-list">
+            <li><label for="recipe-pepperoni">Pepperoni Classic</label></li>
+            <li><label for="recipe-margherita">Margherita Pizza</label></li>
+            <li><label for="tab-recipes">More Recipes</label></li>
+          </ul>
+        </div>
+
+        <div class="show-column">
+          <h4>Cooking Tools</h4>
+          <ul class="mini-list">
+            <li><label for="tab-shopping">Shopping List</label></li>
+            <li><label for="tab-favorites">My Favorites</label></li>
+            <li><label for="cook-along-mode">Cook-Along Mode</label></li>
+          </ul>
+        </div>
+
+        <div class="show-column">
+          <h4>Quick Access</h4>
+          <ul class="mini-list">
+            <li><label for="recipe-margherita">Margherita Pizza</label></li>
+            <li><label for="tab-recipes">All Recipes</label></li>
+            <li><label for="tab-order">Order Online</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Home gallery preview with hover effects -->
+      <div class="home-gallery">
+        <label for="recipe-margherita" class="gallery-thumb">
+          <img src="images/margharita.jpg" alt="Margherita Recipe">
+          <div class="gallery-overlay">View Recipe</div>
+        </label>
+        <label for="recipe-pepperoni" class="gallery-thumb">
+          <img src="images/pepperoni.jpg" alt="Pepperoni Recipe">
+          <div class="gallery-overlay">View Recipe</div>
+        </label>
+        <label for="tab-recipes" class="gallery-thumb">
+          <img src="images/cheeseburst.jpeg" alt="More Recipes">
+          <div class="gallery-overlay">More Recipes</div>
+        </label>
+        <label for="tab-favorites" class="gallery-thumb">
+          <img src="images/veggie.jpg" alt="Favorites">
+          <div class="gallery-overlay">Favorites</div>
+        </label>
+      </div>
+
+      <!-- BONUS 2 + 6: Suggested next step + model comparison -->
+      <section class="smart-section" aria-labelledby="smart-title">
+        <h3 id="smart-title">Suggested next step</h3>
+        <p class="muted">Cards change with what you do on this site. Pick a model to see how the confidence changes.</p>
+        <div class="model-grid" role="radiogroup" aria-label="Suggestion model"><label class="model-card" tabindex="-1"><input type="radio" name="model" id="model-rules" class="visually-hidden" checked><span class="model-inner"><span class="model-face model-front"><strong>Basic Rules</strong><small>Fast, simple, less personal</small><ul class="nutri"><li>Speed<div class="bar"><span style="--val:90%"></span></div></li><li>Quality<div class="bar"><span style="--val:45%"></span></div></li><li>Cost<div class="bar"><span style="--val:95%"></span></div></li></ul></span><span class="model-face model-back"><strong>Basic Rules</strong><small>Best for: first-time visitors. Uses if-then rules.</small><span class="pick">Tap to use this model</span></span></span></label><label class="model-card" tabindex="-1"><input type="radio" name="model" id="model-taste" class="visually-hidden"><span class="model-inner"><span class="model-face model-front"><strong>Taste Match</strong><small>Compares recipes you saved</small><ul class="nutri"><li>Speed<div class="bar"><span style="--val:65%"></span></div></li><li>Quality<div class="bar"><span style="--val:75%"></span></div></li><li>Cost<div class="bar"><span style="--val:60%"></span></div></li></ul></span><span class="model-face model-back"><strong>Taste Match</strong><small>Best for: people with favorites. Finds similar recipes.</small><span class="pick">Tap to use this model</span></span></span></label><label class="model-card" tabindex="-1"><input type="radio" name="model" id="model-hybrid" class="visually-hidden"><span class="model-inner"><span class="model-face model-front"><strong>Hybrid</strong><small>Rules plus taste match</small><ul class="nutri"><li>Speed<div class="bar"><span style="--val:50%"></span></div></li><li>Quality<div class="bar"><span style="--val:92%"></span></div></li><li>Cost<div class="bar"><span style="--val:30%"></span></div></li></ul></span><span class="model-face model-back"><strong>Hybrid</strong><small>Best for: returning cooks. Most accurate, slowest, costs most.</small><span class="pick">Tap to use this model</span></span></span></label></div>
+        <div class="suggest-grid">
+          <article class="suggest-card sug sug-default"><h4>Browse the recipes</h4><p class="conf">Confidence: <strong>High</strong></p><div class="meter"><span style="--val:86%"></span></div><details><summary>Why this suggestion?</summary><p>You have not saved or ordered anything yet, so the easiest start is the recipe list.</p></details><div class="sug-actions"><label for="tab-recipes" class="btn small primary" tabindex="0">Open Recipes</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+          <article class="suggest-card sug sug-fav-m"><h4>Try Pepperoni Classic</h4><p class="conf">Confidence: <strong>High</strong></p><div class="meter"><span style="--val:88%"></span></div><details><summary>Why this suggestion?</summary><p>You saved Margherita. Pepperoni is also Easy and takes a similar time.</p></details><div class="sug-actions"><label for="tab-recipes" class="btn small primary" tabindex="0">See Recipes</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+          <article class="suggest-card sug sug-fav-p"><h4>Try Margherita Pizza</h4><p class="conf">Confidence: <strong>Medium</strong></p><div class="meter"><span style="--val:68%"></span></div><details><summary>Why this suggestion?</summary><p>You saved Pepperoni. Margherita is a lighter recipe with the same skill level.</p></details><div class="sug-actions"><label for="tab-recipes" class="btn small primary" tabindex="0">See Recipes</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+          <article class="suggest-card sug sug-cart"><h4>Review your cart and place your order</h4><p class="conf">Confidence: <strong>High</strong></p><div class="meter"><span style="--val:92%"></span></div><details><summary>Why this suggestion?</summary><p>You added items to your cart. The next step is to place the order.</p></details><div class="sug-actions"><label for="tab-cart" class="btn small primary" tabindex="0">Open Cart</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+        </div><p class="ai-note">Simulated suggestions from fixed rules. Confidence values are examples, not real predictions.</p>
+      </section>
+    </section>
+
+    <!-- RECIPES PANEL -->
+    <section class="panel panel-recipes" aria-labelledby="recipes-title">
+      <div class="panel-inner">
+        <h2 id="recipes-title">Recipe Collection</h2>
+        <p class="muted">Step-by-step recipes to recreate pizzeria favorites at home. Click any recipe to view detailed instructions.</p>
+
+        <div class="recipes-grid">
+          <!-- Recipe Card: Margherita -->
+          <article class="recipe-card">
+            <div class="recipe-card-inner">
+              <div class="imgwrap"><img src="images/margharita.jpg" alt="Margherita Pizza"></div>
+              <div class="recipe-meta">
+                <h3>Margherita Pizza</h3>
+                <div class="recipe-info">
+                  <span class="time">⏱ 45 mins</span>
+                  <span class="difficulty">⭐ Easy</span>
+                </div>
+                <p class="muted">Classic tomato, mozzarella, and fresh basil</p>
+                <div class="recipe-actions">
+                  <label for="recipe-margherita" class="btn small primary">View Recipe</label>
+                  <label for="fav-margherita" class="favorite-toggle">
+                    <span class="heart-icon">♡</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Recipe Card: Pepperoni -->
+          <article class="recipe-card">
+            <div class="recipe-card-inner">
+              <div class="imgwrap"><img src="images/pepperoni.jpg" alt="Pepperoni Pizza"></div>
+              <div class="recipe-meta">
+                <h3>Pepperoni Classic</h3>
+                <div class="recipe-info">
+                  <span class="time">⏱ 50 mins</span>
+                  <span class="difficulty">⭐ Easy</span>
+                </div>
+                <p class="muted">Crispy pepperoni with signature sauce</p>
+                <div class="recipe-actions">
+                  <label for="recipe-pepperoni" class="btn small primary">View Recipe</label>
+                  <label for="fav-pepperoni" class="favorite-toggle">
+                    <span class="heart-icon">♡</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAVORITES PANEL -->
+    <section class="panel panel-favorites" aria-labelledby="favorites-title">
+      <div class="panel-inner">
+        <h2 id="favorites-title">My Favorite Recipes</h2>
+        <p class="muted">Your saved recipes for quick access</p>
+
+        <!-- No Favorites State -->
+        <div class="no-favorites-state">
+          <div class="empty-state">
+            <span class="empty-icon">🤍</span>
+            <h3>No favorites yet</h3>
+            <p>Start adding recipes you love to see them here</p>
+            <label for="tab-recipes" class="btn primary">Browse Recipes</label>
+          </div>
+        </div>
+
+        <!-- Favorites Grid -->
+        <div class="favorites-grid">
+          <!-- Margherita Favorite -->
+          <div class="favorite-item favorite-margherita">
+            <article class="recipe-card">
+              <div class="recipe-card-inner">
+                <div class="imgwrap"><img src="images/margharita.jpg" alt="Margherita Pizza"></div>
+                <div class="recipe-meta">
+                  <h3>Margherita Pizza</h3>
+                  <div class="recipe-info">
+                    <span class="time">⏱ 45 mins</span>
+                    <span class="difficulty">⭐ Easy</span>
+                  </div>
+                  <div class="recipe-actions">
+                    <label for="recipe-margherita" class="btn small primary">Cook Now</label>
+                    <label for="fav-margherita" class="favorite-toggle">
+                      <span class="heart-icon">♥</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Pepperoni Favorite -->
+          <div class="favorite-item favorite-pepperoni">
+            <article class="recipe-card">
+              <div class="recipe-card-inner">
+                <div class="imgwrap"><img src="images/pepperoni.jpg" alt="Pepperoni Pizza"></div>
+                <div class="recipe-meta">
+                  <h3>Pepperoni Classic</h3>
+                  <div class="recipe-info">
+                    <span class="time">⏱ 50 mins</span>
+                    <span class="difficulty">⭐ Easy</span>
+                  </div>
+                  <div class="recipe-actions">
+                    <label for="recipe-pepperoni" class="btn small primary">Cook Now</label>
+                    <label for="fav-pepperoni" class="favorite-toggle">
+                      <span class="heart-icon">♥</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- BONUS 2 + 3: suggestions and predictive progress -->
+        <section class="smart-section" aria-labelledby="fav-sug-title">
+          <h3 id="fav-sug-title">Suggested next step</h3>
+          <div class="suggest-grid">
+            <article class="suggest-card sug sug-default"><h4>Save your first recipe</h4><p class="conf">Confidence: <strong>High</strong></p><div class="meter"><span style="--val:84%"></span></div><details><summary>Why this suggestion?</summary><p>Saved recipes give the site something to learn from. Tap the heart on a recipe.</p></details><div class="sug-actions"><label for="tab-recipes" class="btn small primary" tabindex="0">Open Recipes</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+            <article class="suggest-card sug sug-fav-m"><h4>Try Pepperoni Classic</h4><p class="conf">Confidence: <strong>High</strong></p><div class="meter"><span style="--val:88%"></span></div><details><summary>Why this suggestion?</summary><p>You saved Margherita. Pepperoni is also Easy.</p></details><div class="sug-actions"><label for="tab-recipes" class="btn small primary" tabindex="0">See Recipes</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+            <article class="suggest-card sug sug-fav-p"><h4>Try Margherita Pizza</h4><p class="conf">Confidence: <strong>Medium</strong></p><div class="meter"><span style="--val:68%"></span></div><details><summary>Why this suggestion?</summary><p>You saved Pepperoni. Margherita has the same skill level.</p></details><div class="sug-actions"><label for="tab-recipes" class="btn small primary" tabindex="0">See Recipes</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+            <article class="suggest-card sug sug-cart"><h4>Place your order</h4><p class="conf">Confidence: <strong>High</strong></p><div class="meter"><span style="--val:92%"></span></div><details><summary>Why this suggestion?</summary><p>Your cart has items waiting.</p></details><div class="sug-actions"><label for="tab-cart" class="btn small primary" tabindex="0">Open Cart</label><label class="dismiss"><input type="checkbox"> Not helpful</label></div></article>
+          </div><p class="ai-note">Simulated suggestions from fixed rules. Confidence values are examples, not real predictions.</p>
+        </section>
+        <section class="forecast" aria-labelledby="forecast-title">
+          <h3 id="forecast-title">Progress forecast</h3>
+          <p class="muted">Milestones fill in as you use the site. Forecast times are estimates.</p>
+          <div class="forecast-grid">
+            <article class="fc fc-save"><h4>1. Save a recipe</h4><p class="when-todo">Forecast: about 1 min</p><p class="when-done">✔ Done</p><div class="meter"><span class="fc-bar"></span></div></article>
+            <article class="fc fc-cart"><h4>2. Add items to your cart</h4><p class="when-todo">Forecast: about 3 min</p><p class="when-done">✔ Done</p><div class="meter"><span class="fc-bar"></span></div></article>
+            <article class="fc fc-order"><h4>3. Place an order</h4><p class="when-todo">Forecast: about 5 min</p><p class="when-done">✔ Done</p><div class="meter"><span class="fc-bar"></span></div></article>
+            <article class="fc fc-cook"><h4>4. Finish a cook-along</h4><p class="when-todo">Forecast: about 25 min</p><p class="when-done">✔ Done</p><div class="meter"><span class="fc-bar"></span></div></article>
+          </div>
+          <div class="overall" role="img" aria-label="Overall progress"><span></span></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- RECIPE DETAIL OVERLAYS -->
+    <div class="recipe-overlays">
+      
+      <!-- Margherita Recipe Detail -->
+      <div class="recipe-detail recipe-margherita-detail">
+        <div class="recipe-detail-inner">
+          <div class="recipe-header">
+            <h2>Margherita Pizza</h2>
+            <label for="recipe-none" class="close-btn">✕</label>
+          </div>
+          
+          <div class="recipe-hero">
+            <img src="images/margharita.jpg" alt="Margherita Pizza">
+            <div class="recipe-hero-info">
+              <div class="recipe-stats">
+                <div class="stat">
+                  <strong>Prep Time</strong>
+                  <span>20 mins</span>
+                </div>
+                <div class="stat">
+                  <strong>Cook Time</strong>
+                  <span>25 mins</span>
+                </div>
+                <div class="stat">
+                  <strong>Difficulty</strong>
+                  <span>Easy</span>
+                </div>
+                <div class="stat">
+                  <strong>Serves</strong>
+                  <div class="serving-controls">
+                    <label for="serving-1" class="serving-option">1</label>
+                    <label for="serving-2" class="serving-option active">2</label>
+                    <label for="serving-4" class="serving-option">4</label>
+                    <label for="serving-6" class="serving-option">6</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="recipe-actions-detail">
+                <label for="fav-margherita" class="btn ghost favorite-btn">
+                  <span class="heart-icon">♡</span> Favorite
+                </label>
+                <label for="cook-along-mode" class="btn primary">Start Cook-Along</label>
+              </div>
+            </div>
+          </div>
+
+          <figure class="scan"><input type="checkbox" id="scan-margherita" class="visually-hidden"><div class="scan-frame"><img src="images/margharita.jpg" alt="Margherita pizza used for the ingredient scan demo"><span class="scan-line"></span><span class="det" style="--x:18%;--y:30%;--w:34%;--h:28%"><b>Mozzarella 94%</b></span><span class="det" style="--x:58%;--y:22%;--w:24%;--h:22%"><b>Basil 91%</b></span><span class="det" style="--x:40%;--y:58%;--w:34%;--h:24%"><b>Tomato sauce 88%</b></span></div><figcaption><label for="scan-margherita" class="btn small ghost" tabindex="0">🔍 Scan ingredients (demo)</label><span class="scan-status"><span class="s-scan">Scanning…</span><span class="s-result">Result: 3 items detected</span></span><small class="ai-note">Demo only: boxes are pre-drawn, no image is analyzed.</small></figcaption></figure><aside class="risk-panel" role="note" aria-label="Safety notes"><h3>Safety notes</h3><p class="risk risk-high"><span class="risk-tag">⛔ High risk</span> Oven at 240°C. <strong>Mitigation:</strong> use oven mitts and a timer, keep children away.</p><p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Contains gluten and dairy. <strong>Mitigation:</strong> check labels if you have allergies.</p><p class="risk risk-low"><span class="risk-tag">✔ Low risk</span> Raw dough. <strong>Mitigation:</strong> wash hands and tools after handling.</p></aside>
+          <div class="recipe-content">
+            <div class="ingredients-section">
+              <h3>Ingredients</h3>
+              <ul class="ingredients-list">
+                <!-- Ingredients for 1 serving -->
+                <li class="serving-1"><input type="checkbox"> <span class="ingredient-qty">125g</span> pizza dough</li>
+                <li class="serving-1"><input type="checkbox"> <span class="ingredient-qty">50ml</span> tomato sauce</li>
+                <li class="serving-1"><input type="checkbox"> <span class="ingredient-qty">75g</span> fresh mozzarella</li>
+                
+                <!-- Ingredients for 2 servings (default) -->
+                <li class="serving-2"><input type="checkbox"> <span class="ingredient-qty">250g</span> pizza dough</li>
+                <li class="serving-2"><input type="checkbox"> <span class="ingredient-qty">100ml</span> tomato sauce</li>
+                <li class="serving-2"><input type="checkbox"> <span class="ingredient-qty">150g</span> fresh mozzarella</li>
+                
+                <!-- Ingredients for 4 servings -->
+                <li class="serving-4"><input type="checkbox"> <span class="ingredient-qty">500g</span> pizza dough</li>
+                <li class="serving-4"><input type="checkbox"> <span class="ingredient-qty">200ml</span> tomato sauce</li>
+                <li class="serving-4"><input type="checkbox"> <span class="ingredient-qty">300g</span> fresh mozzarella</li>
+                
+                <!-- Ingredients for 6 servings -->
+                <li class="serving-6"><input type="checkbox"> <span class="ingredient-qty">750g</span> pizza dough</li>
+                <li class="serving-6"><input type="checkbox"> <span class="ingredient-qty">300ml</span> tomato sauce</li>
+                <li class="serving-6"><input type="checkbox"> <span class="ingredient-qty">450g</span> fresh mozzarella</li>
+                
+                <!-- Common ingredients -->
+                <li><input type="checkbox"> <span class="ingredient-qty">10</span> fresh basil leaves</li>
+                <li><input type="checkbox"> <span class="ingredient-qty">1 tbsp</span> olive oil</li>
+                <li><input type="checkbox"> <span class="ingredient-qty">1 tsp</span> salt</li>
+              </ul>
+            </div>
+
+            <div class="instructions-section">
+              <h3>Instructions</h3>
+              <div class="instructions-steps">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h4>Prepare the Dough</h4>
+                    <p class="risk risk-inline risk-high"><span class="risk-tag">⛔ High risk</span> Hot oven or hot tray. Use mitts.</p>
+                    <p>Preheat oven to 240°C (465°F). Roll out pizza dough on a floured surface to 30cm diameter.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h4>Add Sauce & Cheese</h4>
+                    <p class="risk risk-inline risk-low"><span class="risk-tag">✔ Low risk</span> Low hazard. Keep surfaces clean.</p>
+                    <p>Spread tomato sauce evenly, leaving 2cm border. Top with sliced mozzarella.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h4>Bake Pizza</h4>
+                    <p class="risk risk-inline risk-high"><span class="risk-tag">⛔ High risk</span> Hot oven or hot tray. Use mitts.</p>
+                    <p>Bake for 12-15 minutes until crust is golden and cheese is bubbly.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h4>Finish & Serve</h4>
+                    <p class="risk risk-inline risk-low"><span class="risk-tag">✔ Low risk</span> Low hazard. Keep surfaces clean.</p>
+                    <p>Remove from oven, top with fresh basil leaves, drizzle with olive oil, and slice.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pepperoni Recipe Detail -->
+      <div class="recipe-detail recipe-pepperoni-detail">
+        <div class="recipe-detail-inner">
+          <div class="recipe-header">
+            <h2>Pepperoni Classic Pizza</h2>
+            <label for="recipe-none" class="close-btn">✕</label>
+          </div>
+          
+          <div class="recipe-hero">
+            <img src="images/pepperoni.jpg" alt="Pepperoni Pizza">
+            <div class="recipe-hero-info">
+              <div class="recipe-stats">
+                <div class="stat">
+                  <strong>Prep Time</strong>
+                  <span>25 mins</span>
+                </div>
+                <div class="stat">
+                  <strong>Cook Time</strong>
+                  <span>20 mins</span>
+                </div>
+                <div class="stat">
+                  <strong>Difficulty</strong>
+                  <span>Easy</span>
+                </div>
+                <div class="stat">
+                  <strong>Serves</strong>
+                  <div class="serving-controls">
+                    <label for="serving-1" class="serving-option">1</label>
+                    <label for="serving-2" class="serving-option active">2</label>
+                    <label for="serving-4" class="serving-option">4</label>
+                    <label for="serving-6" class="serving-option">6</label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="recipe-actions-detail">
+                <label for="fav-pepperoni" class="btn ghost favorite-btn">
+                  <span class="heart-icon">♡</span> Favorite
+                </label>
+                <label for="cook-along-mode" class="btn primary">Start Cook-Along</label>
+              </div>
+            </div>
+          </div>
+
+          <figure class="scan"><input type="checkbox" id="scan-pepperoni" class="visually-hidden"><div class="scan-frame"><img src="images/pepperoni.jpg" alt="Pepperoni pizza used for the ingredient scan demo"><span class="scan-line"></span><span class="det" style="--x:16%;--y:28%;--w:30%;--h:28%"><b>Pepperoni 96%</b></span><span class="det" style="--x:54%;--y:34%;--w:30%;--h:26%"><b>Mozzarella 92%</b></span><span class="det" style="--x:30%;--y:70%;--w:40%;--h:18%"><b>Crust 89%</b></span></div><figcaption><label for="scan-pepperoni" class="btn small ghost" tabindex="0">🔍 Scan ingredients (demo)</label><span class="scan-status"><span class="s-scan">Scanning…</span><span class="s-result">Result: 3 items detected</span></span><small class="ai-note">Demo only: boxes are pre-drawn, no image is analyzed.</small></figcaption></figure><aside class="risk-panel" role="note" aria-label="Safety notes"><h3>Safety notes</h3><p class="risk risk-high"><span class="risk-tag">⛔ High risk</span> Oven at 240°C. <strong>Mitigation:</strong> use oven mitts and a timer, keep children away.</p><p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Contains gluten and dairy. <strong>Mitigation:</strong> check labels if you have allergies.</p><p class="risk risk-low"><span class="risk-tag">✔ Low risk</span> Raw dough. <strong>Mitigation:</strong> wash hands and tools after handling.</p></aside>
+          <div class="recipe-content">
+            <div class="ingredients-section">
+              <h3>Ingredients</h3>
+              <ul class="ingredients-list">
+                <li class="serving-1"><input type="checkbox"> <span class="ingredient-qty">125g</span> pizza dough</li>
+                <li class="serving-2"><input type="checkbox"> <span class="ingredient-qty">250g</span> pizza dough</li>
+                <li class="serving-4"><input type="checkbox"> <span class="ingredient-qty">500g</span> pizza dough</li>
+                <li class="serving-6"><input type="checkbox"> <span class="ingredient-qty">750g</span> pizza dough</li>
+                
+                <li class="serving-1"><input type="checkbox"> <span class="ingredient-qty">50ml</span> tomato sauce</li>
+                <li class="serving-2"><input type="checkbox"> <span class="ingredient-qty">100ml</span> tomato sauce</li>
+                <li class="serving-4"><input type="checkbox"> <span class="ingredient-qty">200ml</span> tomato sauce</li>
+                <li class="serving-6"><input type="checkbox"> <span class="ingredient-qty">300ml</span> tomato sauce</li>
+                
+                <li class="serving-1"><input type="checkbox"> <span class="ingredient-qty">75g</span> pepperoni</li>
+                <li class="serving-2"><input type="checkbox"> <span class="ingredient-qty">150g</span> pepperoni</li>
+                <li class="serving-4"><input type="checkbox"> <span class="ingredient-qty">300g</span> pepperoni</li>
+                <li class="serving-6"><input type="checkbox"> <span class="ingredient-qty">450g</span> pepperoni</li>
+                
+                <li><input type="checkbox"> <span class="ingredient-qty">100g</span> mozzarella cheese</li>
+                <li><input type="checkbox"> <span class="ingredient-qty">1 tsp</span> oregano</li>
+              </ul>
+            </div>
+
+            <div class="instructions-section">
+              <h3>Instructions</h3>
+              <div class="instructions-steps">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <h4>Prepare Base</h4>
+                    <p class="risk risk-inline risk-high"><span class="risk-tag">⛔ High risk</span> Hot oven or hot tray. Use mitts.</p>
+                    <p>Preheat oven to 230°C (450°F). Roll out dough and place on pizza stone.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <h4>Add Toppings</h4>
+                    <p class="risk risk-inline risk-low"><span class="risk-tag">✔ Low risk</span> Low hazard. Keep surfaces clean.</p>
+                    <p>Spread sauce, add cheese, and arrange pepperoni slices evenly.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <h4>Bake to Perfection</h4>
+                    <p class="risk risk-inline risk-high"><span class="risk-tag">⛔ High risk</span> Hot oven or hot tray. Use mitts.</p>
+                    <p>Bake for 15-18 minutes until crust is crispy and cheese is golden.</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <h4>Serve Hot</h4>
+                    <p class="risk risk-inline risk-low"><span class="risk-tag">✔ Low risk</span> Low hazard. Keep surfaces clean.</p>
+                    <p>Sprinkle with oregano and slice while hot. Enjoy immediately!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COOK-ALONG MODE (Story Pack) -->
+    <div class="cook-along-overlay" role="dialog" aria-labelledby="cook-title">
+      <div class="cook-along-inner">
+        <div class="cook-header">
+          <h2 id="cook-title">🍕 Cook-Along: Margherita Pizza</h2>
+          <div class="cook-actions">
+            <button type="reset" form="appnav" class="btn ghost">🏠 Home</button>
+            <label for="cook-along-mode" class="btn ghost" tabindex="0">Exit Cook Mode</label>
+          </div>
+        </div>
+
+        <div class="cook-progress">
+          <div class="progress-bar"><div class="progress-fill"></div></div>
+          <div class="step-indicators">
+            <label for="cook-step-0" class="step-dot active" tabindex="0" title="Prologue">P</label>
+            <label for="cook-step-1" class="step-dot" tabindex="0" title="Chapter 1">1</label>
+            <label for="cook-step-2" class="step-dot" tabindex="0" title="Chapter 2">2</label>
+            <label for="cook-step-3" class="step-dot" tabindex="0" title="Chapter 3">3</label>
+            <label for="cook-step-4" class="step-dot" tabindex="0" title="Epilogue">✓</label>
+          </div>
+        </div>
+
+        <div class="cook-steps">
+          <div class="cook-step step-0">
+            <p class="chapter-eyebrow">Prologue</p>
+            <h3>Every pizza starts with a story</h3>
+            <p class="story">Gather your ingredients and preheat the oven to 240°C (465°F). The kitchen is quiet, the flour is waiting, and tonight you are the baker.</p>
+            <div class="step-timer">⏱ Preparation: 5 minutes</div>
+            <p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Contains gluten and dairy. Check labels for allergies.</p>
+            <label for="cook-step-1" class="btn primary" tabindex="0">Begin Chapter 1 →</label>
+          </div>
+
+          <div class="cook-step step-1">
+            <p class="chapter-eyebrow">Chapter 1</p>
+            <h3>The Dough</h3>
+            <p class="story">Roll out your pizza dough on a floured surface to about 30 cm across. Be patient; good dough rewards a gentle hand.</p>
+            <div class="step-timer">⏱ Time: 5 minutes</div>
+            <p class="risk risk-low"><span class="risk-tag">✔ Low risk</span> Wash your hands and keep the surface dry and floured.</p>
+            <label for="cook-step-2" class="btn primary" tabindex="0">Next Chapter →</label>
+          </div>
+
+          <div class="cook-step step-2">
+            <p class="chapter-eyebrow">Chapter 2</p>
+            <h3>Sauce &amp; Cheese</h3>
+            <p class="story">Spread the tomato sauce evenly, leaving a thin edge for the crust. Then scatter the mozzarella and let the colors of Italy appear.</p>
+            <div class="step-timer">⏱ Time: 3 minutes</div>
+            <p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Dairy allergen. Wipe spills so the counter is not slippery.</p>
+            <label for="cook-step-3" class="btn primary" tabindex="0">Next Chapter →</label>
+          </div>
+
+          <div class="cook-step step-3">
+            <p class="chapter-eyebrow">Chapter 3</p>
+            <h3>The Bake</h3>
+            <p class="story">Slide the pizza into the hot oven and bake for 12–15 minutes, until the crust is golden and the cheese bubbles.</p>
+            <div class="step-timer">⏱ Time: 15 minutes</div>
+            <p class="risk risk-high"><span class="risk-tag">⛔ High risk</span> The oven is 240°C. Use oven mitts, keep children away, and set a timer.</p>
+            <label class="mitigation"><input type="checkbox" class="safe-check"> I have oven mitts ready</label>
+            <label for="cook-step-4" class="btn primary next-btn" tabindex="0">Next Chapter →</label>
+          </div>
+
+          <div class="cook-step step-4">
+            <p class="chapter-eyebrow">Epilogue</p>
+            <h3>Complete! 🎉</h3>
+            <p class="story">Your Margherita pizza is ready. Add fresh basil, let it rest for a minute, and enjoy the first slice.</p>
+            <div class="completion-celebration">
+              <div class="confetti">🎊</div><div class="confetti">🎉</div><div class="confetti">🍕</div>
+            </div>
+            <div class="end-actions">
+              <button type="reset" form="appnav" class="btn primary">🏠 Home</button>
+              <label for="cook-step-0" class="btn ghost" tabindex="0">↺ Cook Again</label>
+            </div>
+
+            <h4 class="suggest-title">Suggested next steps</h4>
+            <div class="suggest-grid">
+              <article class="suggest-card">
+                <h5>Try Pepperoni Classic</h5>
+                <p class="conf">Confidence: <strong>High</strong></p>
+                <div class="meter"><span style="--val:86%"></span></div>
+                <details><summary>Why this suggestion?</summary><p>You just finished an easy Margherita. Pepperoni is also easy and takes a similar time.</p></details>
+              </article>
+              <article class="suggest-card">
+                <h5>Save it to Favorites</h5>
+                <p class="conf">Confidence: <strong>Medium</strong></p>
+                <div class="meter"><span style="--val:64%"></span></div>
+                <details><summary>Why this suggestion?</summary><p>People who finish a recipe often want to cook it again. Tap Home, then the heart on the recipe card.</p></details>
+              </article>
+            </div>
+            <p class="ai-note">Suggestions are a design simulation using fixed rules. Confidence values are examples, not real predictions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU PANEL -->
+    <section class="panel panel-menu" aria-labelledby="menu-title">
+      <div class="panel-inner">
+        <h2 id="menu-title">Menu</h2>
+        <p class="muted">Hover cards to flip. Use filter chips above to narrow categories. Add items to cart and view your cart at right.</p>
+        <p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Nutrition bars are estimates, not lab values.</p>
+
+        <div class="menu-filters">
+          <label for="filter-all" class="chip active">All</label>
+          <label for="filter-pizzas" class="chip">Pizzas</label>
+          <label for="filter-sides" class="chip">Sides</label>
+          <label for="filter-desserts" class="chip">Desserts</label>
+          <label for="filter-drinks" class="chip">Drinks</label>
+        </div>
+
+        <div class="menu-area">
+          <!-- Grid -->
+          <div class="menu-grid" role="list">
+
+            <!-- Card: Margherita -->
+            <article class="menu-card pizzas" data-cat="pizzas" role="listitem" aria-label="Margherita">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/margharita.jpg" alt="Margherita"></div>
+                  <div class="card-meta">
+                    <h3>Margherita</h3>
+                    <p class="muted">Tomato sauce • Mozzarella • Basil</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:65%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:40%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:28%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-margherita" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card: Pepperoni -->
+            <article class="menu-card pizzas" data-cat="pizzas" role="listitem" aria-label="Pepperoni">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/pepperoni.jpg" alt="Pepperoni"></div>
+                  <div class="card-meta">
+                    <h3>Pepperoni Classic</h3>
+                    <p class="muted">Crispy pepperoni & signature sauce</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:78%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:55%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:34%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-pepperoni" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card: BBQ -->
+            <article class="menu-card pizzas" data-cat="pizzas">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/bbqchicken.jpg" alt="BBQ Chicken"></div>
+                  <div class="card-meta">
+                    <h3>BBQ Chicken</h3>
+                    <p class="muted">Smoky BBQ base & grilled chicken</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:74%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:48%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:46%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-bbq" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card: Veggie -->
+            <article class="menu-card pizzas" data-cat="pizzas">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/veggie.jpg" alt="Veggie"></div>
+                  <div class="card-meta">
+                    <h3>Veggie Supreme</h3>
+                    <p class="muted">Peppers • Onions • Mushrooms • Olives</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:60%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:30%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:22%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-veggie" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Additional cards: Cheese Burst, Paneer, Dominator, Sides, Desserts, Drinks -->
+            <!-- Cheese Burst -->
+            <article class="menu-card pizzas" data-cat="pizzas">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/cheeseburst.jpeg" alt="Cheese Burst"></div>
+                  <div class="card-meta">
+                    <h3>Cheese Burst</h3>
+                    <p class="muted">Double-layered cheese with molten center</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:88%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:66%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:30%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-cheeseburst" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Paneer -->
+            <article class="menu-card pizzas" data-cat="pizzas">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/Paneer.jpg" alt="Paneer"></div>
+                  <div class="card-meta">
+                    <h3>Paneer Makhani</h3>
+                    <p class="muted">Indian-style paneer and makhani sauce</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:70%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:50%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:36%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-paneer" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dominator -->
+            <article class="menu-card pizzas" data-cat="pizzas">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/dominator.jpg" alt="Dominator"></div>
+                  <div class="card-meta">
+                    <h3>Chicken Dominator</h3>
+                    <p class="muted">Meat lovers' special with chicken & sausage</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <h4>Nutrition</h4>
+                  <ul class="nutri">
+                    <li>Calories <div class="bar"><span style="--val:92%"></span></div></li>
+                    <li>Fat <div class="bar"><span style="--val:70%"></span></div></li>
+                    <li>Protein <div class="bar"><span style="--val:48%"></span></div></li>
+                  </ul>
+                  <div class="card-actions">
+                    <label for="p-dominator" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- SIDES -->
+            <article class="menu-card sides" data-cat="sides">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/garlic.jpg" alt="Garlic Breadsticks"></div>
+                  <div class="card-meta">
+                    <h3>Garlic Breadsticks</h3>
+                    <p class="muted">Soft sticks brushed with garlic butter</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Perfect with marinara dip.</p>
+                  <div class="card-actions">
+                    <label for="p-garlic" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card sides" data-cat="sides">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/stuffed.jpg" alt="Stuffed Cheese Bread"></div>
+                  <div class="card-meta">
+                    <h3>Stuffed Cheese Bread</h3>
+                    <p class="muted">Bread filled with molten cheese</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Great for sharing.</p>
+                  <div class="card-actions">
+                    <label for="p-stuffed" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card sides" data-cat="sides">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/wedges.jpg" alt="Potato Wedges"></div>
+                  <div class="card-meta">
+                    <h3>Potato Wedges</h3>
+                    <p class="muted">Crispy herbed wedges with cheese</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Seasoned to perfection.</p>
+                  <div class="card-actions">
+                    <label for="p-wedges" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- DESSERTS -->
+            <article class="menu-card desserts" data-cat="desserts">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/chocolava.jpg" alt="Chocolate Lava"></div>
+                  <div class="card-meta">
+                    <h3>Chocolate Lava Cake</h3>
+                    <p class="muted">Warm molten chocolate</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Serve with ice cream.</p>
+                  <div class="card-actions">
+                    <label for="p-lava" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card desserts" data-cat="desserts">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/brownie.jpg" alt="Brownie"></div>
+                  <div class="card-meta">
+                    <h3>Choco Brownie Fudge</h3>
+                    <p class="muted">Rich fudge brownie</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Perfect end to a meal.</p>
+                  <div class="card-actions">
+                    <label for="p-brownie" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card desserts" data-cat="desserts">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/cheesecake.jpg" alt="Cheesecake"></div>
+                  <div class="card-meta">
+                    <h3>Cheesecake Slice</h3>
+                    <p class="muted">Creamy and smooth</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Pair with berries.</p>
+                  <div class="card-actions">
+                    <label for="p-cheesecake" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- DRINKS -->
+            <article class="menu-card drinks" data-cat="drinks">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/coke.jpg" alt="Coke"></div>
+                  <div class="card-meta">
+                    <h3>Coke (500ml)</h3>
+                    <p class="muted">Chilled classic</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Add ice if desired.</p>
+                  <div class="card-actions">
+                    <label for="p-coke" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card drinks" data-cat="drinks">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/coffee.jpg" alt="Cold Coffee"></div>
+                  <div class="card-meta">
+                    <h3>Cold Coffee Shake</h3>
+                    <p class="muted">Coffee blended with ice cream</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Add whipped cream.</p>
+                  <div class="card-actions">
+                    <label for="p-coffee" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="menu-card drinks" data-cat="drinks">
+              <div class="card-scene">
+                <div class="card-face front">
+                  <div class="imgwrap"><img src="images/smoothie.jpg" alt="Smoothie"></div>
+                  <div class="card-meta">
+                    <h3>Strawberry Smoothie</h3>
+                    <p class="muted">Fruit and yogurt blend</p>
+                    <!-- Removed Add/Order buttons from front -->
+                  </div>
+                </div>
+                <div class="card-face back" aria-hidden="true">
+                  <p class="muted">Refreshing and fruity.</p>
+                  <div class="card-actions">
+                    <label for="p-smoothie" class="btn small">Add to Cart</label>
+                    <label for="tab-order" class="btn small ghost">Order Now</label>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div> <!-- menu-grid -->
+
+          <!-- CART LINK CARD (cart now lives on its own page) -->
+          <aside class="cart-link-card" aria-labelledby="cart-title">
+            <h3 id="cart-title">🛒 Cart &amp; Orders</h3>
+            <p class="muted">Flip a card and tap Add to Cart. Your cart and your placed orders are on their own page.</p>
+            <label for="tab-cart" class="btn primary" tabindex="0">View Cart &amp; Orders →</label>
+          </aside>
+        </div> <!-- menu-area -->
+      </div>
+    </section>
+
+    <!-- CART & ORDERS PANEL -->
+    <section class="panel panel-cart" aria-labelledby="cart-page-title">
+      <div class="panel-inner">
+        <h2 id="cart-page-title">Cart &amp; Orders</h2>
+        <p class="muted">Review what you added, place your order, and track it below.</p>
+        <div class="cart-orders-grid">
+          <section class="cart-box" aria-labelledby="cart-h">
+            <h3 id="cart-h">🛒 Your Cart</h3>
+            <ul class="cart-list"><li class="cart-row item-margherita"><span>Margherita</span><span class="qty">x1</span><label for="p-margherita" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-pepperoni"><span>Pepperoni Classic</span><span class="qty">x1</span><label for="p-pepperoni" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-bbq"><span>BBQ Chicken</span><span class="qty">x1</span><label for="p-bbq" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-veggie"><span>Veggie Supreme</span><span class="qty">x1</span><label for="p-veggie" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-cheeseburst"><span>Cheese Burst</span><span class="qty">x1</span><label for="p-cheeseburst" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-paneer"><span>Paneer Makhani</span><span class="qty">x1</span><label for="p-paneer" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-dominator"><span>Chicken Dominator</span><span class="qty">x1</span><label for="p-dominator" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-garlic"><span>Garlic Breadsticks</span><span class="qty">x1</span><label for="p-garlic" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-stuffed"><span>Stuffed Cheese Bread</span><span class="qty">x1</span><label for="p-stuffed" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-wedges"><span>Potato Wedges</span><span class="qty">x1</span><label for="p-wedges" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-lava"><span>Chocolate Lava Cake</span><span class="qty">x1</span><label for="p-lava" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-brownie"><span>Choco Brownie Fudge</span><span class="qty">x1</span><label for="p-brownie" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-cheesecake"><span>Cheesecake Slice</span><span class="qty">x1</span><label for="p-cheesecake" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-coke"><span>Coke (500ml)</span><span class="qty">x1</span><label for="p-coke" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-coffee"><span>Cold Coffee Shake</span><span class="qty">x1</span><label for="p-coffee" class="remove" tabindex="0">Remove</label></li><li class="cart-row item-smoothie"><span>Strawberry Smoothie</span><span class="qty">x1</span><label for="p-smoothie" class="remove" tabindex="0">Remove</label></li></ul>
+            <p class="cart-none muted">Your cart is empty. Add items from the Menu.</p>
+            <p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Pizzas and breads contain gluten and dairy. Check ingredients if you have allergies.</p>
+            <article class="suggest-card sug sug-drink"><h4>Add a drink?</h4><p class="conf">Confidence: <strong>Medium</strong></p><div class="meter"><span style="--val:66%"></span></div><details><summary>Why this suggestion?</summary><p>Your cart has no drink yet, and most pizza orders include one.</p></details><div class="sug-actions"><label for="tab-menu" class="btn small primary" tabindex="0">Open Menu</label></div></article>
+            <div class="cart-actions">
+              <label for="order-confirm" class="btn primary place-order" tabindex="0">Place Order</label>
+              <label for="tab-menu" class="btn ghost" tabindex="0">Add more items</label>
+            </div>
+          </section>
+          <section class="orders-box" aria-labelledby="orders-h">
+            <h3 id="orders-h">📦 Your Orders</h3>
+            <p class="orders-none muted">No orders yet. Place an order from your cart and it will appear here.</p>
+            <article class="order-card">
+              <header><strong>Order #1001</strong><span class="status-pill">Placed</span></header>
+              <ul class="order-lines"><li class="order-row item-margherita"><span>Margherita</span><span class="qty">x1</span></li><li class="order-row item-pepperoni"><span>Pepperoni Classic</span><span class="qty">x1</span></li><li class="order-row item-bbq"><span>BBQ Chicken</span><span class="qty">x1</span></li><li class="order-row item-veggie"><span>Veggie Supreme</span><span class="qty">x1</span></li><li class="order-row item-cheeseburst"><span>Cheese Burst</span><span class="qty">x1</span></li><li class="order-row item-paneer"><span>Paneer Makhani</span><span class="qty">x1</span></li><li class="order-row item-dominator"><span>Chicken Dominator</span><span class="qty">x1</span></li><li class="order-row item-garlic"><span>Garlic Breadsticks</span><span class="qty">x1</span></li><li class="order-row item-stuffed"><span>Stuffed Cheese Bread</span><span class="qty">x1</span></li><li class="order-row item-wedges"><span>Potato Wedges</span><span class="qty">x1</span></li><li class="order-row item-lava"><span>Chocolate Lava Cake</span><span class="qty">x1</span></li><li class="order-row item-brownie"><span>Choco Brownie Fudge</span><span class="qty">x1</span></li><li class="order-row item-cheesecake"><span>Cheesecake Slice</span><span class="qty">x1</span></li><li class="order-row item-coke"><span>Coke (500ml)</span><span class="qty">x1</span></li><li class="order-row item-coffee"><span>Cold Coffee Shake</span><span class="qty">x1</span></li><li class="order-row item-smoothie"><span>Strawberry Smoothie</span><span class="qty">x1</span></li></ul>
+              <ol class="order-track"><li class="done">Received</li><li class="cur">Preparing</li><li>Out for delivery</li><li>Delivered</li></ol>
+              <p class="muted">Estimated delivery: 30–40 minutes (demo).</p>
+              <label for="order-confirm" class="btn ghost small" tabindex="0">Clear order</label>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER PANEL -->
+    <section class="panel panel-order" aria-labelledby="order-title">
+      <div class="panel-inner narrow">
+        <h2 id="order-title">Order Online</h2>
+        <p class="muted">Select items from the Menu (or Home) and click <strong>Place Order</strong></p>
+
+        <!-- Order: replicated items checkboxes to allow selecting items directly on Order page -->
+        <div class="order-items">
+          <div class="order-grid">
+            <label class="order-item"><input type="checkbox"> Margherita</label>
+            <label class="order-item"><input type="checkbox"> Pepperoni Classic</label>
+            <label class="order-item"><input type="checkbox"> BBQ Chicken</label>
+            <label class="order-item"><input type="checkbox"> Veggie Supreme</label>
+            <label class="order-item"><input type="checkbox"> Cheese Burst</label>
+            <label class="order-item"><input type="checkbox"> Garlic Breadsticks</label>
+            <label class="order-item"><input type="checkbox"> Chocolate Lava Cake</label>
+            <label class="order-item"><input type="checkbox"> Coke (500ml)</label>
+          </div>
+        </div>
+
+        <form class="order-form" onsubmit="return false;" aria-label="Order form">
+          <label>
+            Full name
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+
+          <label>
+            Contact (phone/email)
+            <input type="text" name="contact" placeholder="Phone or email" required>
+          </label>
+
+          <label class="full">
+            Delivery address
+            <input type="text" name="address" placeholder="Street, city, zip" required>
+          </label>
+
+          <label class="full">
+            Notes
+            <textarea name="notes" rows="2" placeholder="Extra instructions (optional)"></textarea>
+          </label>
+
+          <div class="form-actions">
+            <!-- This label toggles #order-confirm which reveals thank-you message -->
+            <label for="order-confirm" class="btn primary submit-order">Place Order</label>
+            <label for="tab-menu" class="btn ghost">Back to Menu</label>
+          </div>
+
+          <!-- Only show success message when order is confirmed -->
+          <div class="order-success" aria-live="polite">
+            <p>🎉 Thank you! Your order has been placed. 🎉</p>
+            <label for="tab-cart" class="btn ghost small" tabindex="0">View in Cart &amp; Orders</label>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- GALLERY PANEL -->
+    <section class="panel panel-gallery" aria-labelledby="gallery-title">
+      <div class="panel-inner">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="muted">Chef's Special</p>
+
+        <div class="gallery-grid">
+          <figure><img src="images/margharita.jpg" alt="Margherita"></figure>
+          <figure><img src="images/pepperoni.jpg" alt="Pepperoni"></figure>
+          <figure><img src="images/cheeseburst.jpeg" alt="Cheese Burst"></figure>
+          <figure><img src="images/veggie.jpg" alt="Veggie"></figure>
+          <figure><img src="images/dominator.jpg" alt="Dominator"></figure>
+          <figure><img src="images/bbqchicken.jpg" alt="BBQ Chicken"></figure>
+          <figure><img src="images/chocolava.jpg" alt="Chocolate Lava"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOPPING PANEL -->
+    <section class="panel panel-shopping" aria-labelledby="shopping-title">
+      <div class="panel-inner">
+        <h2 id="shopping-title">Shopping List</h2>
+        <p class="muted">Auto-generate & edit shopping list — check items as you buy them.</p>
+
+        <ul class="shopping-list">
+          <li><label><input type="checkbox"> Pizza dough (500 g)</label></li>
+          <li><label><input type="checkbox"> Tomato sauce (jar)</label></li>
+          <li><label><input type="checkbox"> Fresh mozzarella (200 g)</label></li>
+          <li><label><input type="checkbox"> Fresh basil</label></li>
+          <li><label><input type="checkbox"> Olive oil</label></li>
+          <li><label><input type="checkbox"> Garlic cloves</label></li>
+          <li><label><input type="checkbox"> Bell peppers</label></li>
+          <li><label><input type="checkbox"> Paneer cubes</label></li>
+          <li><label><input type="checkbox"> Mushrooms</label></li>
+          <li><label><input type="checkbox"> Onions</label></li>
+        </ul>
+
+        <div class="shopping-actions">
+          <label for="shopping-order-confirm" class="btn primary">Place Grocery Order</label>
+          <label for="tab-menu" class="btn ghost">Back to Menu</label>
+        </div>
+
+        <!-- Shopping Order Success Message -->
+        <div class="order-success shopping-success" aria-live="polite">
+          <p>🎉 Grocery Order Placed Successfully! 🎉</p>
+          <p>Your grocery items will be delivered within 2 hours.</p>
+          <p>You'll receive a confirmation with delivery tracking.</p>
+          <div class="success-actions">
+            <label for="shopping-order-reset" class="btn primary">Place New Order</label>
+            <label for="tab-menu" class="btn ghost">Back to Menu</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / PROJECT PROPOSAL PANEL -->
+    <section class="panel panel-about" aria-labelledby="about-title">
+      <div class="panel-inner narrow">
+        <h2 id="about-title">Bricks and Stones Recipe Studio — Group Project</h2>
+        <p class="muted">Course: CSC 4370/6370 — Web Programming — Prof. Henry Louis</p>
+
+        <article class="proposal">
+          <h3>Project Summary</h3>
+          <p>Bricks and Stones Recipe Studio is a recipe website for pizza lovers, built with pure HTML and CSS (Track A: Recipe Studio, Story Pack extension). Key features include hover-activated card flips revealing nutritional information, category filtering for menu items, persistent shopping cart updates, and a complete order workflow—all achieved through innovative CSS-only state management.</p>
+
+          <h3>Group Members</h3>
+          <p>Kothoju Naresh (002923882), Sri Krishna Teja Gangina (002923905), and Sattwik Bhattacharjee (002960354)</p>
+
+        </article>
+
+      </div>
+
+      <section class="ai-docs" aria-labelledby="ai-docs-title">
+        <h3 id="ai-docs-title">How the AI-style features work</h3>
+        <p class="muted">Everything here is a UI simulation in HTML and CSS. No model, no API, no JavaScript.</p>
+        <dl class="concepts">
+          <dt>AI Assistant Panel</dt><dd>Conversational interface. Intent cards map a question to a pre-written response template.</dd>
+          <dt>Recommendation Engine UI</dt><dd>Recommender system with explainable AI. Fixed rules read your saved items and cart, then show a confidence meter and a "Why?" note.</dd>
+          <dt>Predictive Progress Dashboard</dt><dd>Forecasting. Milestone cards show estimated time to go and fill in as you complete them.</dd>
+          <dt>Computer Vision Overlay</dt><dd>Object detection. A scan line runs, then labeled bounding boxes appear with confidence scores.</dd>
+          <dt>AI Ethics &amp; Safety Notices</dt><dd>Risk labeling and transparency. Low, Medium, and High badges come with a clear mitigation.</dd>
+          <dt>Model Comparison Cards</dt><dd>Model trade-offs. Speed, quality, and cost bars let you choose a suggestion model.</dd>
+        </dl>
+        <div class="legend"><p class="risk risk-low"><span class="risk-tag">✔ Low risk</span> Low: routine care.</p><p class="risk risk-med"><span class="risk-tag">⚠ Medium risk</span> Medium: check before you continue.</p><p class="risk risk-high"><span class="risk-tag">⛔ High risk</span> High: stop and use the mitigation first.</p></div>
+      </section>
+    </section>
+    
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <p>Group Project — CSC 4370/6370 (Web Programming)</p>
+      <p>Team: Kothoju Naresh, Sri Krishna Teja Gangina, and Sattwik Bhattacharjee</p>
+      <p>Instructor: Dr. Henry Louis</p>
+      <p>© 2026 Team Bricks and Stones</p>
+    </div>
+  </footer>
+
+
+  <!-- BONUS 1: AI Assistant Panel (available on every screen) -->
+  <aside class="assistant" aria-label="Cooking assistant">
+    <input type="checkbox" id="assist-toggle" class="visually-hidden">
+    <label for="assist-toggle" class="assist-fab" tabindex="0"><span aria-hidden="true">💬</span> Help</label>
+    <section class="assist-panel" aria-labelledby="assist-title">
+      <header><h2 id="assist-title">Cooking Assistant</h2><label for="assist-toggle" class="assist-close" tabindex="0" aria-label="Close assistant">✕</label></header>
+      <ul class="chat" role="log" aria-live="polite"><li class="bubble bot"><p>Hi! Pick a question below and I will guide you.</p></li><li class="bubble user ask a-begin">I am a beginner. Where do I start?</li><li class="bubble user ask a-safe">Is the oven safe to use?</li><li class="bubble user ask a-next">What should I do next?</li><li class="bubble user ask a-why">Why do you suggest things?</li><li class="bubble bot reply r-begin"><p>Start with <strong>Margherita Pizza</strong>. It is Easy and takes about 45 minutes.</p><label for="tab-recipes" class="btn small primary" tabindex="0">Open Recipes</label></li><li class="bubble bot reply r-safe"><p class="risk risk-high"><span class="risk-tag">⛔ High risk</span> Oven at 240°C. Use oven mitts, set a timer, and keep children away.</p><p>The Cook-Along shows this warning before the bake step.</p></li><li class="bubble bot reply r-next r-next-a"><p>You have not added anything yet. Try the <strong>Menu</strong> or save a recipe.</p><label for="tab-menu" class="btn small primary" tabindex="0">Open Menu</label></li><li class="bubble bot reply r-next r-next-b"><p>You have items in your cart. Place your order next.</p><label for="tab-cart" class="btn small primary" tabindex="0">Open Cart</label></li><li class="bubble bot reply r-why"><p>Suggestions use simple rules on what you saved or added. Each card shows a confidence meter and a reason. It is a design demo, not a real prediction.</p></li></ul>
+      <fieldset class="intents"><legend>Ask me about</legend><label class="intent-card"><input type="radio" name="intent" id="intent-begin" class="visually-hidden"><span>I am a beginner. Where do I start?</span></label><label class="intent-card"><input type="radio" name="intent" id="intent-safe" class="visually-hidden"><span>Is the oven safe to use?</span></label><label class="intent-card"><input type="radio" name="intent" id="intent-next" class="visually-hidden"><span>What should I do next?</span></label><label class="intent-card"><input type="radio" name="intent" id="intent-why" class="visually-hidden"><span>Why do you suggest things?</span></label></fieldset>
+      <p class="ai-note">Pre-written answers. This is a UI demo, not a live AI.</p>
+    </section>
+  </aside>
+</body>
+</html>

@@ -1,0 +1,4 @@
+GitHub repository: [add link]
+Live site (designated server): [add link]
+Kanban board (GitHub Projects): [add link]
+Screenshots / demo GIF: [add link]

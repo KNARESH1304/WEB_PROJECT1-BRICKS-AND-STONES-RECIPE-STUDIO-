@@ -1,0 +1,35 @@
+Title,Status,Assignee,Planned start,Planned end,Actual finish (fill in),Notes / evidence
+Submit project proposal (Word),Done,All,2026-10-05,2026-10-05,,Enter the real submission date. File: docs/Project_Proposal_*.docx
+Create GitHub repo + Kanban board,To Do,Naresh,2026-10-05,2026-10-06,,Add repo + board links to links.txt
+Split CSS into partial files with variables,To Do,Naresh,2026-10-05,2026-10-06,,Optional refactor; styles.css currently one file
+Rename project + update team names/IDs,Done,Sri Krishna Teja,2026-10-05,2026-10-06,2026-10-18,"index.html brand, About page, footer"
+Home + Recipes list screens,Done,Naresh,2026-10-07,2026-10-08,2026-10-18,"Home hero, recipe cards"
+Recipe Detail + About/Contact screens,Done,Sri Krishna Teja,2026-10-07,2026-10-08,2026-10-18,"Servings, ingredients, steps, About"
+"Favorites, Menu, Order, Gallery, Shopping screens",Done,Sattwik,2026-10-07,2026-10-08,2026-10-18,All panels navigable
+Mobile nav + responsive breakpoints (360/768/1280),Done,Sattwik,2026-10-09,2026-10-10,2026-10-18,Nav scrolls on small screens; overflow fixes
+Visible focus styles + reduced-motion support,Done,Sri Krishna Teja,2026-10-09,2026-10-10,2026-10-18,styles.css end section
+Mid-point peer layout check (2 peers),To Do,Sattwik,2026-10-10,2026-10-10,,Record in docs/feedback.md
+"Story Pack: 5 chapters, drop caps, progress bar",Done,Naresh,2026-10-11,2026-10-12,2026-10-18,Cook-Along overlay
+Fix Home/Exit button after cook-along,Done,Naresh,2026-10-11,2026-10-12,2026-10-18,Reset form + Exit label; tested in browser
+Menu category filters show only chosen category,Done,Sattwik,2026-10-11,2026-10-12,2026-10-18,"Pizzas 7, Sides 3, Desserts 3, Drinks 3"
+Separate Cart & Orders page,Done,Sattwik,2026-10-11,2026-10-12,2026-10-18,New tab with cart + order tracking
+Pepperoni cook-along chapters,To Do,Naresh,2026-10-11,2026-10-18,,Carried over: only Margherita is built
+Bonus 1: AI Assistant Panel,Done,Naresh,2026-10-13,2026-10-14,2026-10-18,"Help button, intent cards, templates"
+Bonus 2: Recommendation Engine UI,Done,Naresh,2026-10-13,2026-10-14,2026-10-18,"Home, Favorites, Cart, Cook-Along"
+Bonus 3: Predictive Progress Dashboard,Done,Sattwik,2026-10-13,2026-10-14,2026-10-18,Favorites page
+Bonus 4: Computer Vision Overlay,Done,Sri Krishna Teja,2026-10-13,2026-10-14,2026-10-18,Recipe detail scan demo
+Bonus 5: AI Ethics & Safety Notices,Done,Sri Krishna Teja,2026-10-13,2026-10-14,2026-10-18,Risk badges + callouts
+Bonus 6: Model Comparison Cards,Done,Sattwik,2026-10-13,2026-10-14,2026-10-18,Home; changes confidence meters
+"Accessibility pass (keyboard, contrast, screen reader)",To Do,Sri Krishna Teja,2026-10-15,2026-10-15,,Automated keyboard checks done; screen reader + contrast tool still to do
+Run W3C HTML/CSS validators + Lighthouse,To Do,Sri Krishna Teja,2026-10-15,2026-10-18,,Paste scores into docs/qa-notes.md
+Peer usability test (5 peers),To Do,Sattwik,2026-10-16,2026-10-18,,Use 4 tasks from proposal; log in docs/feedback.md
+"Cross-browser + real phone check (Firefox, Safari)",To Do,Naresh,2026-10-16,2026-10-18,,Log in docs/qa-notes.md
+Replace placeholder images with real photos + credits,To Do,Naresh,2026-10-16,2026-10-18,,Same file names; credits in README
+"README: setup, structure, decisions, AI disclosure",Done,Sri Krishna Teja,2026-10-17,2026-10-17,2026-10-18,Add image credits + reflection
+QA notes with 3+ checks per bonus feature,Done,Sri Krishna Teja,2026-10-17,2026-10-17,2026-10-18,29 automated checks pass
+Screenshots / demo GIF,To Do,Sattwik,2026-10-17,2026-10-18,,Save in docs/screenshots/
+Design trade-off reflection (README),To Do,All,2026-10-17,2026-10-18,,Short paragraph
+Push final code to GitHub with meaningful commits,To Do,All,2026-10-18,2026-10-18,,Each member commits their own parts
+"Fill links.txt (repo, live server, board, demo)",To Do,Naresh,2026-10-18,2026-10-18,,Required: .txt file
+Test on designated server,To Do,Naresh,2026-10-18,2026-10-18,,Check image paths/case
+Presentation practice (Q1-Q12),To Do,All,2026-10-18,2026-10-18,,Each member prepares evidence

@@ -1,4 +1,4 @@
 GitHub repository: https://github.com/KNARESH1304/WEB_PROJECT1-BRICKS-AND-STONES-RECIPE-STUDIO-
-Live site (designated server): [add link]
+Live site (designated server): https://codd.cs.gsu.edu/~sgangina1/Project_1/index.html
 Kanban board (GitHub Projects): Created and added it into files
 Screenshots / demo GIF: [add link]
